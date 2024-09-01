@@ -1,13 +1,7 @@
-// app/api/[[...slugs]]/route.ts
-import { Elysia, t } from "elysia";
+import { workspacesRouter } from "@/app/api/[[...route]]/workspaces";
+import { Elysia } from "elysia";
 
-const app = new Elysia({ prefix: "/api" })
-  .get("/", () => "hello Next")
-  .post("/", ({ body }) => body, {
-    body: t.Object({
-      name: t.String(),
-    }),
-  });
+const app = new Elysia({ prefix: "/api" }).use(workspacesRouter);
 
 export const GET = app.handle;
 export const POST = app.handle;
